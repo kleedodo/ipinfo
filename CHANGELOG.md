@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Add `permissions: contents: write` to the release job so `GITHUB_TOKEN` has the minimum required permission to create/update GitHub releases via `softprops/action-gh-release@v3`
+
 ### Changed
 
 - Fix CI workflow for cross-platform builds: update deprecated Node.js 20 actions (v4→v5), add aarch64 Linux cross-compilation linker, remove unbuildable OpenBSD target, add FreeBSD cross-compilation via cargo-zigbuild
