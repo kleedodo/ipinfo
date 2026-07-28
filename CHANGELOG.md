@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Fix CI workflow for cross-platform builds: update deprecated Node.js 20 actions (v4→v5), add aarch64 Linux cross-compilation linker, remove unbuildable OpenBSD target, add FreeBSD cross-compilation via cargo-zigbuild
+- Update CI actions to latest versions: `actions/checkout` v5→v7, `actions/upload-artifact` v5→v7, `actions/download-artifact` v5→v8, `softprops/action-gh-release` v2→v3
+- Fix release job to also run on `workflow_dispatch` so manually triggered builds add assets to a release
+- Add `tag` input to `workflow_dispatch` so users can specify which git tag/release to attach build artifacts to
 
 ### Fixed
 
