@@ -111,6 +111,10 @@ Key crates used:
 - **serde / serde_json** — JSON serialization / deserialization
 - **anyhow** — Error handling
 
+## Agent Skill
+
+This project includes an Agent Skill at `.agents/skills/ipinfo/SKILL.md` following the [Agent Skills](https://agentskills.io/) open standard. It provides IP geolocation and network intelligence to any skills-compatible AI agent (Claude Code, Cursor, OpenAI Codex, etc.).
+
 ## License
 
 See the LICENSE file for details.
