@@ -116,7 +116,7 @@ jobs:
       - name: Upload Release Assets
         uses: softprops/action-gh-release@v3
         with:
-          tag: ${{ github.event.inputs.tag }}
+          tag_name: ${{ github.event.inputs.tag }}
           files: dist/**/*.tar.gz
           fail_on_unmatched_files: true
         env:
