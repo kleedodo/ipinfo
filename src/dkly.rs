@@ -1,9 +1,66 @@
 use anyhow::Result;
 use reqwest::blocking::Client;
 use serde::{Deserialize, Serialize};
+use std::path::PathBuf;
 
 pub const BASE_URL: &str = "https://ipinfo.dkly.net/api/";
-pub const ENV_API_KEY: &str = "DKLY_API_KEY";
+
+// ---------------------------------------------------------------------------
+// Config
+// ---------------------------------------------------------------------------
+
+/// Top-level configuration loaded from `config.json`.
+#[derive(serde::Deserialize, Debug)]
+pub struct Config {
+    #[serde(default)]
+    pub providers: Providers,
+}
+
+/// Provider registry.
+#[derive(serde::Deserialize, Debug, Default)]
+pub struct Providers {
+    #[serde(default)]
+    pub dkly: DklyProvider,
+}
+
+/// dkly provider configuration.
+#[derive(serde::Deserialize, Debug, Default)]
+pub struct DklyProvider {
+    #[serde(default)]
+    pub key: Option<String>,
+}
+
+impl Config {
+    /// Load configuration. Searches, in order:
+    ///  1. `./config.json` (local, takes precedence)
+    ///  2. `~/.config/ipinfo/config.json` (global)
+    ///
+    /// Returns `Ok(None)` when no config file is found.
+    pub fn load() -> Result<Option<Self>> {
+        // 1. Local config (current working directory)
+        let local = PathBuf::from("config.json");
+        if local.exists() {
+            let content = std::fs::read_to_string(&local)?;
+            let config: Self = serde_json::from_str(&content)?;
+            return Ok(Some(config));
+        }
+
+        // 2. Global config (~/.config/ipinfo/config.json)
+        if let Some(home) = std::env::var_os("HOME").or_else(|| std::env::var_os("USERPROFILE")) {
+            let global = PathBuf::from(home)
+                .join(".config")
+                .join("ipinfo")
+                .join("config.json");
+            if global.exists() {
+                let content = std::fs::read_to_string(&global)?;
+                let config: Self = serde_json::from_str(&content)?;
+                return Ok(Some(config));
+            }
+        }
+
+        Ok(None)
+    }
+}
 
 // ---------------------------------------------------------------------------
 // Request
