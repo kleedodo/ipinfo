@@ -7,12 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Fixed
-
-- Add `permissions: contents: write` to the release job so `GITHUB_TOKEN` has the minimum required permission to create/update GitHub releases via `softprops/action-gh-release@v3`
-
 ### Changed
 
+- Fix Installation section in README.md: remove incorrect `cargo install ipinfo` (crates.io name conflicts with a different project), restructure with clear subheadings for source build, manual build, and pre-built binaries
+- Fix repository URL placeholder `<your-org>` → `kleedodo` in clone URL
+- Change License section to use Markdown link syntax linking to the `LICENSE` file
 - Fix CI workflow for cross-platform builds: update deprecated Node.js 20 actions (v4→v5), add aarch64 Linux cross-compilation linker, remove unbuildable OpenBSD target, add FreeBSD cross-compilation via cargo-zigbuild
 - Update CI actions to latest versions: `actions/checkout` v5→v7, `actions/upload-artifact` v5→v7, `actions/download-artifact` v5→v8, `softprops/action-gh-release` v2→v3
 - Fix release job to also run on `workflow_dispatch` so manually triggered builds add assets to a release
@@ -20,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Add `permissions: contents: write` to the release job so `GITHUB_TOKEN` has the minimum required permission to create/update GitHub releases via `softprops/action-gh-release@v3`
 - Fix `softprops/action-gh-release@v3` input parameter name from `tag` to `tag_name` — the action no longer accepts `tag` and requires `tag_name` to specify the release tag
 - Add `shell: bash` to the "Build release" step to prevent PowerShell from misinterpreting bash `if` syntax on Windows runners
 - Use `aarch64-linux-gnu-strip` for aarch64 cross-compiled binaries instead of the host `strip`, which cannot handle foreign binary formats

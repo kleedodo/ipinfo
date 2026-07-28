@@ -15,19 +15,29 @@ A Rust CLI tool that queries IP information from the **dklyIPdatabase** API and 
 
 ## Installation
 
+### From source
+
 ```bash
-cargo build --release
+git clone https://github.com/kleedodo/ipinfo.git
+cd ipinfo
+cargo install --path .
 ```
 
-Or clone the repository and build:
+This builds and installs the binary to your Cargo bin directory (typically `~/.cargo/bin`). Make sure `~/.cargo/bin` is in your `PATH`.
+
+Alternatively, you can build manually:
 
 ```bash
-git clone https://github.com/<your-org>/ipinfo.git
+git clone https://github.com/kleedodo/ipinfo.git
 cd ipinfo
 cargo build --release
 ```
 
 The binary will be available at `target/release/ipinfo`.
+
+### Pre-built binaries
+
+Pre-built binaries for various platforms are available on the [GitHub Releases](https://github.com/kleedodo/ipinfo/releases) page. Download the appropriate archive for your platform, extract it, and place the `ipinfo` binary in a directory on your `PATH`.
 
 ## Usage
 
@@ -117,4 +127,4 @@ This project includes an Agent Skill at `.agents/skills/ipinfo/SKILL.md` followi
 
 ## License
 
-See the LICENSE file for details.
+See the [LICENSE](LICENSE) file for details.
