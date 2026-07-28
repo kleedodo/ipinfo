@@ -56,6 +56,7 @@ jobs:
         run: pip3 install ziglang cargo-zigbuild
       # --- Build ---
       - name: Build release
+        shell: bash
         run: |
           if [ "${{ matrix.target }}" = "x86_64-unknown-freebsd" ]; then
             cargo zigbuild --release --target ${{ matrix.target }}
@@ -69,7 +70,13 @@ jobs:
       # --- Strip debug symbols (Unix only) ---
       - name: Strip binary
         if: matrix.os != 'windows-latest'
-        run: strip target/${{ matrix.target }}/release/ipinfo
+        shell: bash
+        run: |
+          STRIP="strip"
+          if [ "${{ matrix.target }}" = "aarch64-unknown-linux-gnu" ]; then
+            STRIP="aarch64-linux-gnu-strip"
+          fi
+          $STRIP target/${{ matrix.target }}/release/ipinfo
 
       # --- Package ---
       - name: Package artifact
