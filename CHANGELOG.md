@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- Fix CI workflow for cross-platform builds: update deprecated Node.js 20 actions (v4→v5), add aarch64 Linux cross-compilation linker, remove unbuildable OpenBSD target, add FreeBSD cross-compilation via cargo-zigbuild
+
 ## [0.1.0] - 2026-07-28
 
 ### Added
