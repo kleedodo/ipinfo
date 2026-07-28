@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release of `ipinfo` CLI tool
 - Add `.agents/skills/ipinfo/SKILL.md` following the [Agent Skills](https://agentskills.io/) open standard, with YAML frontmatter (`license`, `compatibility`, `metadata`, `allowed-tools`) and structured body content for progressive disclosure
+  - Add install section documenting `cargo install --path .` to install binary to `~/.cargo/bin`
 - IP geolocation lookup via dklyIPdatabase API
 - Support for optional IP address argument (defaults to requester's public IP)
 - API key authentication via `config.json`

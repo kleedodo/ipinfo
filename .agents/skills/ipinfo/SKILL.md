@@ -24,6 +24,16 @@ ipinfo
 ipinfo 8.8.8.8
 ```
 
+## Install
+
+From the project root directory, install the binary to `~/.cargo/bin`:
+
+```bash
+cargo install --path .
+```
+
+This builds the project and places the `ipinfo` executable in your Cargo bin directory, which is typically already on your `PATH`.
+
 ## Output Format
 
 The tool prints Markdown to stdout with the following sections:
