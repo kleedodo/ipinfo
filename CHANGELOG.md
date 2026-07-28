@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fix CI workflow for cross-platform builds: update deprecated Node.js 20 actions (v4→v5), add aarch64 Linux cross-compilation linker, remove unbuildable OpenBSD target, add FreeBSD cross-compilation via cargo-zigbuild
 
+### Fixed
+
+- Add `shell: bash` to the "Build release" step to prevent PowerShell from misinterpreting bash `if` syntax on Windows runners
+- Use `aarch64-linux-gnu-strip` for aarch64 cross-compiled binaries instead of the host `strip`, which cannot handle foreign binary formats
+
 ## [0.1.0] - 2026-07-28
 
 ### Added
