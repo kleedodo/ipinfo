@@ -25,3 +25,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Currency (code, name, symbol)
   - Security (VPN, proxy, Tor, threat flags)
 - Upgrade `reqwest` from `0.12` to `0.13.4`
+- Add GitHub Actions CI workflow (`.github/workflows/build.yml`) to cross-compile `ipinfo` for multiple platforms (Linux x86_64/arm64, macOS arm64, Windows x86_64, OpenBSD x86_64) and upload build artifacts to GitHub
