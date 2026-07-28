@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Fix `softprops/action-gh-release@v3` input parameter name from `tag` to `tag_name` — the action no longer accepts `tag` and requires `tag_name` to specify the release tag
 - Add `shell: bash` to the "Build release" step to prevent PowerShell from misinterpreting bash `if` syntax on Windows runners
 - Use `aarch64-linux-gnu-strip` for aarch64 cross-compiled binaries instead of the host `strip`, which cannot handle foreign binary formats
 
