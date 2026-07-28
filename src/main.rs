@@ -1,15 +1,12 @@
-use std::env;
-
 use anyhow::Result;
 use clap::Parser;
-use dotenvy::dotenv;
 
 mod dkly;
 
 /// Query IP information from the dklyIPdatabase API.
 ///
 /// If no IP address is provided, the requester's public IP is looked up.
-/// The API key is read from the DKLY_API_KEY environment variable.
+/// The API key is read from `config.json` (local or `~/.config/ipinfo/config.json`).
 /// When no key is set, requests are made without authentication.
 #[derive(Parser)]
 #[command(name = "ipinfo", version, about)]
@@ -19,10 +16,9 @@ struct Args {
 }
 
 fn main() -> Result<()> {
-    dotenv().ok();
-
     let args = Args::parse();
-    let api_key = env::var(dkly::ENV_API_KEY).ok();
+    let config = dkly::Config::load()?;
+    let api_key = config.as_ref().and_then(|c| c.providers.dkly.key.clone());
 
     dkly::query(args.ip, api_key)
 }

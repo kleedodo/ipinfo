@@ -10,7 +10,7 @@ A Rust CLI tool that queries IP information from the **dklyIPdatabase** API and 
 - Time zone information (ID, abbreviation, UTC offset)
 - Currency details (code, name, symbol)
 - Security flags (VPN, proxy, Tor, threat detection)
-- API key authentication via environment variable
+- API key authentication via `config.json`
 - Clean Markdown-formatted output
 
 ## Installation
@@ -41,19 +41,19 @@ ipinfo 8.8.8.8
 
 ### Configuration
 
-Set your API key via the `DKLY_API_KEY` environment variable. The tool will read a `.env` file automatically if one is present.
+Create a `config.json` file in the current working directory (or `~/.config/ipinfo/config.json` for a global configuration):
 
-```bash
-export DKLY_API_KEY="your-api-key"
+```json
+{
+  "providers": {
+    "dkly": {
+      "key": "your-api-key"
+    }
+  }
+}
 ```
 
-Or create a `.env` file in the project root:
-
-```env
-DKLY_API_KEY=your-api-key
-```
-
-> **Note:** The `.env` file is not committed to version control. See `.gitignore` and `.env.example` for reference.
+The local `./config.json` takes precedence over `~/.config/ipinfo/config.json`. See `config.json.example` for reference.
 
 ### Example Output
 
@@ -99,7 +99,7 @@ The tool queries the dklyIPdatabase API at `https://ipinfo.dkly.net/api/`. The A
 
 | Parameter | Description |
 |-----------|-------------|
-| `key`     | API key (optional if set via env var) |
+| `key`     | API key (optional if set in config.json) |
 | `ip`      | IP address to look up (optional; defaults to requester's IP) |
 
 ## Dependencies
@@ -109,7 +109,6 @@ Key crates used:
 - **clap** — CLI argument parsing (derive API)
 - **reqwest** — HTTP client (blocking, JSON, rustls-tls)
 - **serde / serde_json** — JSON serialization / deserialization
-- **dotenvy** — `.env` file loading
 - **anyhow** — Error handling
 
 ## License
